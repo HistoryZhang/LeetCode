@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84FB24C62524325900E39643 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84FB24C52524325900E39643 /* main.cpp */; };
+		84FB24CE2524573100E39643 /* LinkListHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84FB24CC2524573100E39643 /* LinkListHelper.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		84FB24C22524325900E39643 /* NC78 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NC78; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FB24C52524325900E39643 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		84FB24CC2524573100E39643 /* LinkListHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LinkListHelper.cpp; path = ../LinkListHelper.cpp; sourceTree = "<group>"; };
+		84FB24CD2524573100E39643 /* LinkListHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = LinkListHelper.hpp; path = ../LinkListHelper.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,8 @@
 		84FB24B92524325900E39643 = {
 			isa = PBXGroup;
 			children = (
+				84FB24CC2524573100E39643 /* LinkListHelper.cpp */,
+				84FB24CD2524573100E39643 /* LinkListHelper.hpp */,
 				84FB24C42524325900E39643 /* NC78 */,
 				84FB24C32524325900E39643 /* Products */,
 			);
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FB24C62524325900E39643 /* main.cpp in Sources */,
+				84FB24CE2524573100E39643 /* LinkListHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

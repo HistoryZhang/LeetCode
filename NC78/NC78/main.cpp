@@ -7,15 +7,9 @@
 //
 
 #include <iostream>
+#include "LinkListHelper.hpp"
 
 using namespace std;
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {
-    }
-};
 
 /// 输入一个链表，反转链表后，输出新链表的表头。
 ListNode* ReverseList(ListNode* pHead) {
@@ -33,29 +27,45 @@ ListNode* ReverseList(ListNode* pHead) {
     return pre;
 }
 
-void PrintNode(ListNode *pHead) {
-    ListNode *p = pHead;
-    while (p != NULL) {
-        cout<<p->val<<endl;
-        p = p->next;
+/// 翻转链表前m节点
+/// @param pHead 头结点
+/// @param n 总长度
+/// @param m 翻转数
+ListNode *RevLinkList(ListNode *pHead, int n, int m) {
+    if (m > n) {
+        return pHead;
     }
-    cout<<"-------"<<endl;
+    if (pHead == NULL) {
+        return pHead;
+    }
+    ListNode *p = pHead;
+    ListNode *pre = NULL;
+    ListNode *next = NULL;
+    for (int i = 0; i < m; ++ i) {
+        next = pHead->next;
+        pHead->next = pre;
+        pre = pHead;
+        pHead = next;
+    }
+
+    if (next) {
+        p->next = next;
+    }
+
+    return pre;
 }
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    ListNode *pHead = new ListNode(1);
-    ListNode *p = pHead;
-    for (int i = 2; i < 5; ++ i) {
-        ListNode *node = new ListNode(i);
-        p->next = node;
-        p = node;
-    }
+    int a[] = {1, 2, 3, 4, 5};
+    vector<int> vec(a, a + 5);
+
+    ListNode *pHead = LinkListHelper::CreateLinkList(vec);
     
-    PrintNode(pHead);
+    LinkListHelper::PrintLinkList(pHead);
     
-    ListNode *res = ReverseList(pHead);
-    PrintNode(res);
+    ListNode *res = RevLinkList(pHead, 5, 3);
+    LinkListHelper::PrintLinkList(res);
+    
     
     return 0;
 }
