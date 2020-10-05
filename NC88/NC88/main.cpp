@@ -51,9 +51,46 @@ int findKth(vector<int> a, int n, int K) {
     return quickSort(a, 0, (int)a.size()-1, K);
 }
 
+/*
+ * 我们还可以是使用K个元素最小堆来求解,这样根就是第K大
+ * 我们构建一个K个元素的小顶堆
+ */
+void adujstHeap(vector<int> &a, int i, int n) {
+    while (i < n) {
+        int left = i * 2 + 1;
+        int right = left + 1;
+        int min = left;
+        if (right <= n && a[left] > a[right]) {
+            min = right;
+        }
+        if (a[i] > a[min]) {
+            swap(a[i], a[min]);
+            i = min;
+        } else {
+            break;
+        }
+    }
+}
+void insertValue(vector<int> &a, int val, int k) {
+    
+}
+void makeHeap(vector<int> &a, int k) {
+    for (int i = (k - 2) / 2; i >= 0; --i) {
+        adujstHeap(a, i, k-1);
+    }
+}
+
+void findKthByHeap(vector<int> &a, int K) {
+    makeHeap(a, K);
+    for (int i = K; i < a.size(); ++ i) {
+//        insertValue(heap, a[i]);
+    }
+}
+
 int main(int argc, const char * argv[]) {
     int a[] = {5,6,3,4,7};
     vector<int> v(a, a + 5);
-    cout<<findKth(v, 5, 3)<<endl;
+//    cout<<findKth(v, 5, 3)<<endl;
+    findKthByHeap(v, 5);
     return 0;
 }
