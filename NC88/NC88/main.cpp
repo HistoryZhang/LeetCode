@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -55,42 +56,28 @@ int findKth(vector<int> a, int n, int K) {
  * 我们还可以是使用K个元素最小堆来求解,这样根就是第K大
  * 我们构建一个K个元素的小顶堆
  */
-void adujstHeap(vector<int> &a, int i, int n) {
-    while (i < n) {
-        int left = i * 2 + 1;
-        int right = left + 1;
-        int min = left;
-        if (right <= n && a[left] > a[right]) {
-            min = right;
-        }
-        if (a[i] > a[min]) {
-            swap(a[i], a[min]);
-            i = min;
-        } else {
-            break;
-        }
-    }
-}
-void insertValue(vector<int> &a, int val, int k) {
-    
-}
-void makeHeap(vector<int> &a, int k) {
-    for (int i = (k - 2) / 2; i >= 0; --i) {
-        adujstHeap(a, i, k-1);
-    }
-}
 
-void findKthByHeap(vector<int> &a, int K) {
-    makeHeap(a, K);
-    for (int i = K; i < a.size(); ++ i) {
-//        insertValue(heap, a[i]);
+int findKthByHeap(vector<int> &a, int K) {
+    // 建立K个元素小顶堆
+    priority_queue<int, vector<int>, greater<int> > heap;
+    // 大顶堆定义如下
+//    priority_queue<int, vector<int>, less<int> > heap;
+    for (int i = 0; i < K; ++ i) {
+        heap.push(a[i]);
     }
+    for (int i = K; i < a.size(); ++ i) {
+        if (a[i] > heap.top()) {
+            heap.pop();
+            heap.push(a[i]);
+        }
+    }
+    return heap.top();
 }
 
 int main(int argc, const char * argv[]) {
     int a[] = {5,6,3,4,7};
     vector<int> v(a, a + 5);
 //    cout<<findKth(v, 5, 3)<<endl;
-    findKthByHeap(v, 5);
+    cout<<findKthByHeap(v, 3)<<endl;
     return 0;
 }
